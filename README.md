@@ -4,7 +4,14 @@
 
 ## Instalation
 
-TODO: add to packagist
+```bash
+$ composer require backendtea/phinx-csv-seeder
+```
+
+## Requirements
+
+* PHP 5.6 or higher
+* robmorgan/phinx version 0.8.1 or higher
 
 ## Usage
 
