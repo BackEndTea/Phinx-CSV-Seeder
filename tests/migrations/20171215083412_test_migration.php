@@ -17,6 +17,8 @@ class TestMigration extends AbstractMigration
 
     public function down()
     {
-        $this->table('users')->drop();
+        $users = $this->table('users');
+        $users->drop();
+        $users->save();
     }
 }
