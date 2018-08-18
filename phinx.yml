@@ -1,6 +1,6 @@
 paths:
-    migrations: %%PHINX_CONFIG_DIR%%/tests/migrations
-    seeds:  %%PHINX_CONFIG_DIR%%/tests/Fixtures
+    migrations: '%%PHINX_CONFIG_DIR%%/tests/migrations'
+    seeds:  '%%PHINX_CONFIG_DIR%%/tests/Fixtures'
 
 environments:
     default_migration_table: phinxlog

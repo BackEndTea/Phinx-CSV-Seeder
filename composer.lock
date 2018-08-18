@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38be5f1f9b2e6a8f859ead838585db3e",
+    "content-hash": "4b742dff51c5c540fb38751073c13a7a",
     "packages": [
         {
             "name": "robmorgan/phinx",
