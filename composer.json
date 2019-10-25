@@ -1,5 +1,5 @@
 {
-  "name": "backendtea/phinx-csv-seeder",
+  "name": "lapsus/phinx-csv-seeder",
   "description": "A simple way to seed your database from a csv file using phinx",
   "type": "library",
   "license": "MIT",
