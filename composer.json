@@ -4,7 +4,7 @@
   "type": "library",
   "license": "MIT",
   "require": {
-    "robmorgan/phinx": "^0.8.1||^0.9.0||^0.10.0"
+    "robmorgan/phinx": "^0.11"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.7"
