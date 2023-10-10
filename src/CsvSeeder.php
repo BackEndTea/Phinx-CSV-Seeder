@@ -24,11 +24,30 @@ abstract class CsvSeeder extends AbstractSeed
      * @var string
      */
     private $fileName;
+    
+    /**
+     * set variable truncate
+     */
+    public $truncate = false;
+
+    /**
+     * ignore csv field to insert
+     */
+    public $ignoredField = [];
 
     public function insertCsv($table, $filename)
     {
         $this->fileName = $filename;
         $toInsert = $this->seedFromCSV();
+
+        if(true === $this->truncate) {
+            $table->truncate();
+        }
+
+        if(!empty($this->ignoredField)) {
+            $toInsert = $this->cleanIgnoredField($toInsert);
+        }
+
         $this->insert($table, $toInsert);
     }
 
@@ -103,7 +122,7 @@ abstract class CsvSeeder extends AbstractSeed
      * @param array $mapping
      * @return array
      */
-    private function buildToInsertArray($csvRows, $mapping)
+    protected function buildToInsertArray($csvRows, $mapping)
     {
         $toBuild = [];
         $offset =  1 ;
@@ -119,6 +138,20 @@ abstract class CsvSeeder extends AbstractSeed
     }
 
 
+    /**
+     * remove field to insert
+     */
+    private function cleanIgnoredField(array $fields): array
+    {
+        foreach($fields as $i => $row) {
+             foreach($row as $key => $_) {
+                if(in_array($key, $this->ignoredField)) {
+                    unset($fields[$i][$key]);
+                }
+             }
+        }
+        return $fields;
+    }
 
 
 

@@ -13,6 +13,10 @@ $ composer require backendtea/phinx-csv-seeder
 * PHP 5.6 or higher
 * robmorgan/phinx version 0.8.1 or higher
 
+## Options
+$truncate = true -- truncate table before insert
+$ignoredField = ['...'] -- array with key name of csv to ignore
+
 ## Usage
 
 Basic usage: 
