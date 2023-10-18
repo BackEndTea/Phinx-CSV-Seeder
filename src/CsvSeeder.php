@@ -103,14 +103,24 @@ abstract class CsvSeeder extends AbstractSeed
      * @param array $mapping
      * @return array
      */
-    private function buildToInsertArray($csvRows, $mapping)
+    private function buildToInsertArray(array $csvRows, array $mapping): array
     {
         $toBuild = [];
-        $offset =  1 ;
+        $offset =  1;
         for ($i = $offset; $i < count($csvRows); $i++) {
             $temp = [];
-            foreach ($mapping as $key => $value) {
-                $temp[$value] = $csvRows[$i][$key];
+            foreach ($mapping as $key => $field) {
+
+                $value = $csvRows[$i][$key];
+                if(strtolower($csvRows[$i][$key]) === 'false') {
+                    $value = false;
+                }
+                
+                if(strtolower($csvRows[$i][$key]) === 'true') {
+                    $value = true;
+                }
+
+                $temp[$field] = $value;
             }
             $toBuild[] = $temp;
         }
