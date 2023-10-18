@@ -23,6 +23,7 @@ use BackEndTea\MigrationHelper\CsvSeeder;
 
 class UserSeeder extends CsvSeeder
 {
+    protected $csvHeaders = ['header'];
 
     public function run()
     {
