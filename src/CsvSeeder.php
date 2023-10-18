@@ -3,6 +3,7 @@
 namespace BackEndTea\MigrationHelper;
 
 use Phinx\Seed\AbstractSeed;
+use Exception;
 
 abstract class CsvSeeder extends AbstractSeed
 {
@@ -25,6 +26,11 @@ abstract class CsvSeeder extends AbstractSeed
      */
     private $fileName;
 
+    /**
+     * @var array
+     */
+    protected $csvHeaders = [];
+
     public function insertCsv($table, $filename)
     {
         $this->fileName = $filename;
@@ -42,6 +48,8 @@ abstract class CsvSeeder extends AbstractSeed
         }
         $mapping = $data[0];
         fclose($handle);
+
+        $this->checkHeaderCsv($mapping);
 
         return $this->buildToInsertArray($data, $mapping);
     }
@@ -118,9 +126,30 @@ abstract class CsvSeeder extends AbstractSeed
         return $toBuild;
     }
 
+    /**
+     * check csv header is correct
+     * @param array $header
+     * 
+     * @throws Exceptions
+     */
+    private function checkHeaderCsv(array $header): void
+    {
+        if (!empty($this->csvHeaders)) {
 
+            foreach ($header as $field) {
+                if (!in_array($field, $this->csvHeaders)) {
+                    throw new Exception("$field is not correct, please check your file.", 500);
+                }
+            }
 
-
-
+            //double check
+            foreach ($this->csvHeaders as $field) {
+                if (!in_array($field, $header)) {
+                    throw new Exception("$field is missing, please check your file.", 500);
+                }
+            }
+            
+        }
+    }
 
 }
